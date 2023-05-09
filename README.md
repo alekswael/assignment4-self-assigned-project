@@ -11,6 +11,11 @@
   </p>
 </p>
 
+# QUESTIONS FOR ROSS
+Is a Seq() model with the flattened input features and an output layer a form of logistic regression?
+Are we evaluated on project complexity?
+
+
 ## About the project
 
 ### Data

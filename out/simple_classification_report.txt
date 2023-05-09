@@ -1,0 +1,39 @@
+                    precision    recall  f1-score   support
+
+    Apple Braeburn       1.00      0.78      0.88        50
+Apple Granny Smith       1.00      0.36      0.53        50
+           Apricot       1.00      0.86      0.92        50
+           Avocado       0.91      0.91      0.91        44
+            Banana       1.00      0.35      0.52        49
+         Blueberry       1.00      0.72      0.84        47
+      Cactus fruit       0.00      0.00      0.00        49
+        Cantaloupe       1.00      1.00      1.00        50
+            Cherry       1.00      0.12      0.21        50
+        Clementine       1.00      1.00      1.00        49
+              Corn       0.91      0.93      0.92        45
+     Cucumber Ripe       0.88      0.93      0.90        40
+        Grape Blue       0.88      1.00      0.93       100
+              Kiwi       1.00      0.96      0.98        47
+             Lemon       0.89      1.00      0.94        50
+             Limes       0.57      1.00      0.73        49
+             Mango       0.84      1.00      0.92        49
+       Onion White       0.97      0.69      0.81        45
+            Orange       0.69      1.00      0.82        49
+            Papaya       0.96      0.94      0.95        50
+     Passion Fruit       1.00      1.00      1.00        49
+             Peach       1.00      0.70      0.82        50
+              Pear       0.46      1.00      0.63        70
+      Pepper Green       1.00      0.87      0.93        46
+        Pepper Red       0.93      1.00      0.96        67
+         Pineapple       0.89      1.00      0.94        49
+              Plum       0.49      1.00      0.66        46
+       Pomegranate       1.00      1.00      1.00        50
+        Potato Red       0.73      0.96      0.83        45
+         Raspberry       1.00      1.00      1.00        49
+        Strawberry       1.00      0.98      0.99        50
+            Tomato       1.00      0.96      0.98        75
+        Watermelon       1.00      0.62      0.77        48
+
+          accuracy                           0.85      1706
+         macro avg       0.88      0.84      0.82      1706
+      weighted avg       0.88      0.85      0.83      1706
