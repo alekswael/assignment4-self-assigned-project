@@ -111,7 +111,10 @@ def train_model(model, train_ds, val_ds, epochs_arg):
                         callbacks=[early_stopping]
                         )
     
-    return history
+    # Getting the amount of epochs trained
+    actual_epochs = len(history.history['loss'])
+    
+    return history, actual_epochs
 
 ##### PLOTTING FUNCTION #####
 def plot_history(H, epochs):
@@ -168,9 +171,9 @@ def main():
     print("Setting up model...")
     model = model_setup()
     print("Training model...")
-    history = train_model(model, train_ds, val_ds, args.epochs)
+    history, actual_epochs = train_model(model, train_ds, val_ds, args.epochs)
     print("Plotting and saving learning curves...")
-    plot_history(history, args.epochs)
+    plot_history(history, actual_epochs)
     print("Making predictions...")
     y_test, y_predictions, y_pred = make_predictions(model, test_ds)
     print("Printing classification report...")
