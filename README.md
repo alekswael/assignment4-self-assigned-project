@@ -1,28 +1,32 @@
-<!-- PROJECT LOGO -->
 <br />
-  <h1 align="center">Visual Analytics Portfolio</h1> 
-  <h2 align="center">Assignment 4: Self-assigned project
-  
-  Classifying images </h2> 
-  <h3 align="center">Cultural Data Science, 2023</h3> 
-  <p align="center">
-  Auther: Aleksander Moeslund Wael <br>
+  <h1 align="center">Assignment 4: Self-assigned project - classifying fruits with multiclass logistic regression and VGG16</h1> 
+  <h2 align="center">Cultural Data Science, 2023</h2> 
+  <h3 align="center">
+  Author: Aleksander Moeslund Wael <br>
   Student no. 202005192
-  </p>
+  </h3>
 </p>
 
-# QUESTIONS FOR ROSS
-
+---
 ## About the project
 This repo contains code for conducting image classification on a dataset of fruit images. Two models are fit to the data, a simple sequential model and a large retrained CNN model (VGG16). The project demonstrates the 
 
 ### Data
-The dataset used for the project is the [Fruit Classification](https://www.kaggle.com/datasets/sshikamaru/fruit-recognition) dataset from Kaggle. This dataset consists of 22495 images of fruits across 33 classes (fruit types). Images are 100x100 resolution and masked to isolate the fruits. The samples in each class appear to be quite heterogenous in this dataset, so a high accuracy score is expected when classifying the images.
+The dataset used for the project is the [Fruit Classification](https://www.kaggle.com/datasets/sshikamaru/fruit-recognition) dataset from Kaggle. This dataset consists of 22495 images of fruits across 33 classes (fruit types). Images are 100x100 resolution and masked to isolate the fruits. The samples in each class appear to be quite heterogenous in this dataset, so a high accuracy score is expected when classifying the images. The data is pre-split into a train and test set, but since the test set doesn't have labels, the training data was furhter split into a training (80%, 11787 images), validation (20%, 3361 images) and test split (10%, 1706 images) with the `split-folders` package for Python.
+
+Below are examples from each class of fruit:
+![classes](extra/examples.png)
+[Image source](https://www.kaggle.com/code/wudi9901/lets-classfiy-fruits-tensorflow-cnn)
+
+Example of Apple Braeburn test set:
+![apple_brae](extra/homogeneity.png)
 
 ### Model
 Image classification was performed using two approaches:
 1. Initiating, training and predicting with a simple sequential model. 
 2. Finetuning and predicting with the `VGG16` model.
+
+The simple model is a sequential model with zero hidden layers; there is only an input layer fully connected to a 33 node dense output layer. This is essentially multiclass logisitic regression.
 
 The `VGG16` model is 16 layers deep, and has approx 138 million parameters and is trained on the ImageNet dataset. [(source)](https://medium.com/@mygreatlearning/everything-you-need-to-know-about-vgg16-7315defb5918).
 
@@ -114,6 +118,10 @@ This repository has the following structure:
 │   WIN_run.sh
 │   WIN_run_simple.sh
 │   WIN_setup.sh
+│
+├───extra
+│       examples.png
+│       homogeneity.png
 │   
 ├───fruits_v2
 │   ├───test
@@ -142,8 +150,8 @@ This repository has the following structure:
 │   │   ...
 │
 ├───out
-│       classification.png
 │       classification_report.txt
+│       classification.png
 │       simple_classification.png
 │       simple_classification_report.txt
 │
@@ -153,6 +161,12 @@ This repository has the following structure:
 ```
 
 ## Remarks on findings
+
+The simple sequential model achieves a near perfect score of ~99% acc after 13 epochs when predicting the test set. Val-accuracy is about 96% after just 7 epochs, so further training yields diminishing returns after this point.
+
+Upon reviewing the data again, it seems the images are too similar in each class. This would explain why the accuracy is so high on train, val AND test data - the data is simply to homogenetic. It might be interesting to test the model with another test dataset which has more image variance.
+
+
 ```
                     precision    recall  f1-score   support
 
@@ -194,11 +208,56 @@ Apple Granny Smith       1.00      0.98      0.99        50
          macro avg       0.99      0.99      0.99      1706
       weighted avg       0.99      0.99      0.99      1706
 ```
-
+*Classification report for simple model predictions.*
 
 ![simple_classification](out\simple_classification.png)
+*Learning curves for simple model fit.*
 
-```
+The finetuned VGG16 model reaches a perfect score of 100% acc after just 8 epochs. Being a larger, more complex and pretrained model, this was in every way expected. The model has weights from the ImageNet dataset training, and that dataset also includes fruits, which is beneficial for this project.
 
+Compared to the simple model, the training time for this model was significantly longer. If the goal is to get high accuracy in predicting the test set labels, than it would be wiser to use the simple model.
 ```
-![simple_classification](out\simple_classification.png)
+                    precision    recall  f1-score   support
+
+    Apple Braeburn       1.00      1.00      1.00        50
+Apple Granny Smith       1.00      1.00      1.00        50
+           Apricot       1.00      1.00      1.00        50
+           Avocado       1.00      1.00      1.00        44
+            Banana       1.00      1.00      1.00        49
+         Blueberry       1.00      1.00      1.00        47
+      Cactus fruit       1.00      1.00      1.00        49
+        Cantaloupe       1.00      1.00      1.00        50
+            Cherry       1.00      1.00      1.00        50
+        Clementine       1.00      1.00      1.00        49
+              Corn       1.00      1.00      1.00        45
+     Cucumber Ripe       1.00      1.00      1.00        40
+        Grape Blue       1.00      1.00      1.00       100
+              Kiwi       1.00      1.00      1.00        47
+             Lemon       1.00      1.00      1.00        50
+             Limes       1.00      1.00      1.00        49
+             Mango       1.00      1.00      1.00        49
+       Onion White       1.00      1.00      1.00        45
+            Orange       1.00      1.00      1.00        49
+            Papaya       1.00      1.00      1.00        50
+     Passion Fruit       1.00      1.00      1.00        49
+             Peach       1.00      1.00      1.00        50
+              Pear       1.00      1.00      1.00        70
+      Pepper Green       1.00      1.00      1.00        46
+        Pepper Red       1.00      1.00      1.00        67
+         Pineapple       1.00      1.00      1.00        49
+              Plum       1.00      1.00      1.00        46
+       Pomegranate       1.00      1.00      1.00        50
+        Potato Red       1.00      1.00      1.00        45
+         Raspberry       1.00      1.00      1.00        49
+        Strawberry       1.00      1.00      1.00        50
+            Tomato       1.00      1.00      1.00        75
+        Watermelon       1.00      1.00      1.00        48
+
+          accuracy                           1.00      1706
+         macro avg       1.00      1.00      1.00      1706
+      weighted avg       1.00      1.00      1.00      1706
+```
+*Classification report for VGG16 model predictions.*
+
+![simple_classification](out\classification.png)
+*Learning curves for VGG16 model fit.*
