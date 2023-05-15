@@ -9,10 +9,10 @@
 
 ---
 ## About the project
-This repo contains code for conducting image classification on a dataset of fruit images. Two models are fit to the data, a simple sequential model and a large retrained CNN model (VGG16). The project demonstrates the 
+This repo contains code for conducting image classification on a dataset of fruit images. Two models are fit to the data; a simple sequential model which is akin to multiclass logistic regression, and a large pretrained CNN model (VGG16). The project demonstrates why some tasks are best solved using lower complexity models, as is the case for this project.
 
 ### Data
-The dataset used for the project is the [Fruit Classification](https://www.kaggle.com/datasets/sshikamaru/fruit-recognition) dataset from Kaggle. This dataset consists of 22495 images of fruits across 33 classes (fruit types). Images are 100x100 resolution and masked to isolate the fruits. The samples in each class appear to be quite heterogenous in this dataset, so a high accuracy score is expected when classifying the images. The data is pre-split into a train and test set, but since the test set doesn't have labels, the training data was furhter split into a training (80%, 11787 images), validation (20%, 3361 images) and test split (10%, 1706 images) with the `split-folders` package for Python.
+The dataset used for the project is the [Fruit Classification](https://www.kaggle.com/datasets/sshikamaru/fruit-recognition) dataset from Kaggle. This dataset consists of 22495 images of fruits across 33 classes (fruit types). Images are 100x100 resolution and masked to isolate the fruits. The samples in each class appear to be quite heterogeneous in this dataset, so a high accuracy score is expected when classifying the images. The data is pre-split into a train and test set, but since the test set doesn't have labels, the training data was furhter split into a training (80%, 11787 images), validation (20%, 3361 images) and test split (10%, 1706 images) with the `split-folders` package for Python.
 
 Below are examples from each class of fruit:
 ![classes](extra/examples.png)
@@ -75,7 +75,7 @@ Run the script in a bash terminal.
 
 The script does the following:
 1. Activates the virtual environment
-2. Runs `cnn_fashion.py` located in the `src` folder
+2. Runs either `fruit_classifier.py` or `simple_fruit_classifier.py` located in the `src` folder
 3. Deactivates the virtual environment
 
 ```bash
@@ -164,7 +164,7 @@ This repository has the following structure:
 
 The simple sequential model achieves a near perfect score of ~99% acc after 13 epochs when predicting the test set. Val-accuracy is about 96% after just 7 epochs, so further training yields diminishing returns after this point.
 
-Upon reviewing the data again, it seems the images are too similar in each class. This would explain why the accuracy is so high on train, val AND test data - the data is simply to homogenetic. It might be interesting to test the model with another test dataset which has more image variance.
+Upon reviewing the data again, it seems the images are too similar in each class. This would explain why the accuracy is so high on train, val AND test data - the data is simply to homogeneous. It might be interesting to test the model with another test dataset which has more image variance.
 
 
 ```
