@@ -1,13 +1,10 @@
 <br />
-  <h1 align="center">Assignment 4: Self-assigned project - classifying fruits with multiclass logistic regression and VGG16</h1> 
-  <h2 align="center">Cultural Data Science, 2023</h2> 
+  <h1 align="center">Classifying fruits with multiclass logistic regression and VGG16</h1> 
   <h3 align="center">
   Author: Aleksander Moeslund Wael <br>
-  Student no. 202005192
   </h3>
 </p>
 
----
 ## About the project
 This repo contains code for conducting image classification on a dataset of fruit images. Two models are fit to the data; a simple sequential model which is akin to multiclass logistic regression, and a large pretrained CNN model (VGG16). The project demonstrates why some tasks are best solved using lower complexity models, as is the case for this project.
 
@@ -52,8 +49,8 @@ The repo was setup to work with Windows (the WIN_ files), MacOS and Linux (the M
 
 ### 1. Clone repository to desired directory
 ```bash
-git clone https://github.com/alekswael/assignment4-self-assigned-project
-cd assignment4-self-assigned-project
+git clone https://github.com/alekswael/fruit_classifier_LR_VGG16
+cd fruit_classifier_LR_VGG16
 ```
 ### 2. Run setup script 
 **NOTE:** Depending on your OS, run either `WIN_setup.sh` or `MACL_setup.sh`.
